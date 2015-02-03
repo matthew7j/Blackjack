@@ -1,6 +1,8 @@
 package com.matthew7j;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public class Shoe {
     int numDecks;
@@ -23,5 +25,18 @@ public class Shoe {
             results += c.toString() + "\n";
         }
         return results;
+    }
+
+    public void shuffle() {
+        Collections.shuffle(cards);
+        insertYellowCard();
+    }
+
+    private void insertYellowCard() {
+        Random rand = new Random();
+
+        int yellowCardLocation = (52 * numDecks) - (numDecks * (rand.nextInt((15 - 10) + 1) + 10));
+        Card yellowCard = new Card();
+        cards.add(yellowCardLocation, yellowCard);
     }
 }

@@ -18,8 +18,4 @@ public class Deck {
             }
         }
     }
-
-    public void shuffle(Deck d) {
-
-    }
 }

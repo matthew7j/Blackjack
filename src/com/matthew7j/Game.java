@@ -16,6 +16,8 @@ public class Game {
 
     private void initializeShoe() {
         Shoe shoe = new Shoe(decks);
-        System.out.println(shoe.toString());
+        System.out.println("Not shuffled\n" + shoe.toString());
+        shoe.shuffle();
+        System.out.println("Shuffled\n" + shoe.toString());
     }
 }
