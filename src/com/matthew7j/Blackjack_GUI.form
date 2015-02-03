@@ -15,7 +15,7 @@
           <text value="How many Players?"/>
         </properties>
       </component>
-      <component id="788aa" class="javax.swing.JSlider" binding="slider1" default-binding="true">
+      <component id="788aa" class="javax.swing.JSlider" binding="playerSlider">
         <constraints/>
         <properties>
           <foreground color="-2960686"/>
@@ -33,7 +33,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="bee49" class="javax.swing.JSlider" binding="slider2" default-binding="true">
+          <component id="bee49" class="javax.swing.JSlider" binding="deckSlider">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
