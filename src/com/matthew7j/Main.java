@@ -1,6 +1,6 @@
-package com.Blackjack_Game;
+package com.matthew7j;
 
-public class Blackjack {
+public class Main {
 
     public static void main(String[] args)
     {
