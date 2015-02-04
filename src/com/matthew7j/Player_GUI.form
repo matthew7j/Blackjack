@@ -1,38 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.matthew7j.Player_GUI">
-  <grid id="27dc6" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="0" left="0" bottom="0" right="0"/>
+  <grid id="27dc6" binding="newPlayerPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <component id="691a3" class="javax.swing.JTextField" binding="$TextField" default-binding="true">
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
+      <component id="77157" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <text value="Buy-In Amount"/>
+        </properties>
+      </component>
+      <component id="56dc" class="javax.swing.JTextField" binding="buyinAmount">
+        <constraints/>
         <properties>
           <columns value="10"/>
-          <text value="$"/>
+          <text value=""/>
         </properties>
       </component>
-      <component id="d2246" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
+      <component id="ed1e2" class="javax.swing.JButton" binding="OKButton" default-binding="true">
+        <constraints/>
         <properties>
-          <text value="Buy in Amount"/>
-        </properties>
-      </component>
-      <component id="120ef" class="javax.swing.JButton" binding="OKButton" default-binding="true">
-        <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <horizontalTextPosition value="0"/>
           <text value="OK"/>
         </properties>
       </component>
