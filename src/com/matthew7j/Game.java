@@ -7,6 +7,8 @@ public class Game {
         this.decks = decks;
 
         initGame();
+
+        new Table();
     }
 
     private void initGame() {

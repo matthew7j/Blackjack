@@ -23,6 +23,7 @@ public class Blackjack_GUI extends JFrame {
                 int numDecks = deckSlider.getValue();
 
                 new Game(numDecks);
+
             }
         });
     }
