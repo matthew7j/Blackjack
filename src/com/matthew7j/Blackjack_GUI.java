@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 public class Blackjack_GUI extends JFrame {
     private JPanel blackjackPanel;
-    private JSlider playerSlider;
     private JSlider deckSlider;
     private JButton startButton;
 
@@ -21,11 +20,10 @@ public class Blackjack_GUI extends JFrame {
         startButton.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                int numPlayers = playerSlider.getValue();
                 int numDecks = deckSlider.getValue();
 
-                new Game(numPlayers, numDecks);
-                Table table = new Table(numPlayers);
+                new Game(numDecks);
+                Table table = new Table();
             }
         });
     }

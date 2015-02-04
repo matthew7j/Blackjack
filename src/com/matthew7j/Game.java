@@ -1,10 +1,9 @@
 package com.matthew7j;
 
 public class Game {
-    int decks, players;
+    int decks;
 
-    public Game(int players, int decks) {
-        this.players = players;
+    public Game(int decks) {
         this.decks = decks;
 
         initGame();

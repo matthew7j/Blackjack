@@ -9,24 +9,6 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="ed3da" class="javax.swing.JLabel">
-        <constraints/>
-        <properties>
-          <text value="How many Players?"/>
-        </properties>
-      </component>
-      <component id="788aa" class="javax.swing.JSlider" binding="playerSlider">
-        <constraints/>
-        <properties>
-          <foreground color="-2960686"/>
-          <maximum value="8"/>
-          <minimum value="1"/>
-          <minorTickSpacing value="1"/>
-          <paintLabels value="true"/>
-          <paintTicks value="true"/>
-          <snapToTicks value="true"/>
-        </properties>
-      </component>
       <grid id="5ad64" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints/>

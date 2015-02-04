@@ -4,10 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Table {
-    int numPlayers;
 
-    public Table(int numPlayers) {
-        this.numPlayers = numPlayers;
+    public Table() {
         ImagePanel panel = new ImagePanel(new ImageIcon("images/blackjack.png").getImage());
 
         JFrame frame = new JFrame();
@@ -19,10 +17,6 @@ public class Table {
 
 class ImagePanel extends JPanel {
     private Image img;
-
-    public ImagePanel(String img) {
-        this(new ImageIcon(img).getImage());
-    }
 
     public ImagePanel(Image img) {
         this.img = img;
