@@ -1,5 +1,5 @@
 package com.matthew7j;
 
-public class Dealer {
+public class Dealer extends Person {
 
 }

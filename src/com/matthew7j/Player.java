@@ -2,7 +2,7 @@ package com.matthew7j;
 
 import java.util.ArrayList;
 
-public class Player {
+public class Player extends Person {
     double money;
     ArrayList<Card> cards = new ArrayList<Card>();
 
