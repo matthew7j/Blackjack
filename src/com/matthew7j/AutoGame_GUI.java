@@ -19,15 +19,14 @@ public class AutoGame_GUI extends JFrame {
         pack();
         setVisible(true);
 
-
         simulateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 numDecks = Integer.parseInt(decksTextField.getText());
                 numPlayers = Integer.parseInt(playersTextField.getText());
                 amount = Double.parseDouble(amountTextField.getText());
+
+                new AutoGame(numDecks, numPlayers, amount);
             }
         });
-
-        new AutoGame(numDecks, numPlayers, amount);
     }
 }
