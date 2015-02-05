@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class Shoe {
     int numDecks;
+    boolean yellow;
     ArrayList<Card> cards = new ArrayList<Card>();
 
     public Shoe(int numDecks) {

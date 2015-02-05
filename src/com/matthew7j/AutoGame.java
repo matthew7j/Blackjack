@@ -24,6 +24,7 @@ public class AutoGame {
     private Shoe initializeShoe() {
         Shoe shoe = new Shoe(numDecks);
         shoe.shuffle();
+        shoe.yellow = false;
 
         return shoe;
     }
@@ -35,14 +36,23 @@ public class AutoGame {
     }
 
     private void dealShoe(Shoe shoe) {
-        dealHand(shoe);
+        while (!shoe.yellow)
+            dealHand(shoe);
+
         getCurrentHand();
     }
 
     private void dealHand(Shoe shoe) {
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < players.size(); j++) {
-                players.get(j).addHand(shoe.cards.remove(0));
+                Card c = shoe.cards.remove(0);
+
+                if (c.suit == null) {
+                    c = shoe.cards.remove(0);
+                    shoe.yellow = true;
+                }
+
+                players.get(j).addHand(c);
             }
         }
     }
