@@ -18,8 +18,55 @@ public class Player extends Person {
         }
         return false;
     }
-    public void handOption(){
 
+    public void act() {
+        Value v1 = hand.get(0).value;
+        Value v2 = hand.get(1).value;
+
+        int weight1, weight2;
+
+        switch (v1) {
+            case Two: {
+
+            }
+            case Three: {
+
+            }
+            case Four: {
+
+            }
+            case Five: {
+
+            }
+            case Six: {
+
+            }
+            case Seven: {
+
+            }
+            case Eight: {
+
+            }
+            case Nine: {
+
+            }
+            case Ten: {
+
+            }
+            case Jack: {
+
+            }
+            case Queen: {
+
+            }
+            case King: {
+
+            }
+            case Ace: {
+
+            }
+        }
     }
+
 
 }

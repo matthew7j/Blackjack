@@ -13,7 +13,8 @@ public class Dealer extends Person {
         }
         return false;
     }
-    public void handOption(){
+
+    public void act() {
 
     }
 }

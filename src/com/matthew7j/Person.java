@@ -14,14 +14,12 @@ abstract class Person {
         else
             hand.add(c);
     }
-    public void addHand(Card c){
-
-    }
     public void removeHand(){
         hand.clear();
     }
     abstract boolean checkForBlackJack();
-    abstract void handOption();
+
+    abstract void act();
 
 
 }

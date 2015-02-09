@@ -65,7 +65,7 @@ public class AutoGame {
     }
     private void playerOption(){
         for (Person p : players){
-
+            p.act();
         }
     }
     private void checkBlackJack(){
