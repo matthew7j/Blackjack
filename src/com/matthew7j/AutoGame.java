@@ -36,8 +36,10 @@ public class AutoGame {
     }
 
     private void dealShoe(Shoe shoe) {
-        while (!shoe.yellow)
+        while (!shoe.yellow) {
             dealHand(shoe);
+            clearTable();
+        }
 
         getCurrentHand();
     }
@@ -52,8 +54,15 @@ public class AutoGame {
                     shoe.yellow = true;
                 }
 
-                players.get(j).addHand(c);
+                players.get(j).addCard(c);
             }
+        }
+    }
+    private void clearTable()
+    {
+        for (Person p : players)
+        {
+            p.removeHand();
         }
     }
 

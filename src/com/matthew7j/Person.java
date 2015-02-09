@@ -8,10 +8,16 @@ public class Person {
     public Person() {
     }
 
-    public void addHand(Card c) {
+    public void addCard(Card c) {
         if (hand.size() >= 2)
             System.out.println("Player cannot have more than 2 cards on initial deal");
         else
             hand.add(c);
+    }
+    public void addHand(Card c){
+
+    }
+    public void removeHand(){
+        hand.clear();
     }
 }
