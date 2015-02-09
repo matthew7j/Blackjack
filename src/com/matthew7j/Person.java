@@ -20,4 +20,7 @@ public class Person {
     public void removeHand(){
         hand.clear();
     }
+    public void checkForBlackJack(){
+
+    }
 }

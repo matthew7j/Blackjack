@@ -38,10 +38,10 @@ public class AutoGame {
     private void dealShoe(Shoe shoe) {
         while (!shoe.yellow) {
             dealHand(shoe);
+            playerTurn();
+            getCurrentHand();
             clearTable();
         }
-
-        getCurrentHand();
     }
 
     private void dealHand(Shoe shoe) {
@@ -52,10 +52,17 @@ public class AutoGame {
                 if (c.suit == null) {
                     c = shoe.cards.remove(0);
                     shoe.yellow = true;
+                    System.out.println("Last hand of the shoe!");
                 }
 
                 players.get(j).addCard(c);
             }
+        }
+    }
+    private void playerTurn(){
+        for (Person p : players)
+        {
+            p.checkForBlackJack();
         }
     }
     private void clearTable()
