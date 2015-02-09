@@ -60,9 +60,25 @@ public class AutoGame {
         }
     }
     private void playerTurn(){
+        checkBlackJack();
+        playerOption();
+    }
+    private void playerOption(){
+        for (Person p : players){
+
+        }
+    }
+    private void checkBlackJack(){
         for (Person p : players)
         {
-            p.checkForBlackJack();
+            if (p.checkForBlackJack()){
+                if (p instanceof Player){
+                    p.hand.clear();
+                }
+                else{
+                    clearTable();
+                }
+            }
         }
     }
     private void clearTable()

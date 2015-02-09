@@ -2,7 +2,7 @@ package com.matthew7j;
 
 import java.util.ArrayList;
 
-public class Person {
+abstract class Person {
     ArrayList<Card> hand = new ArrayList<Card>();
 
     public Person() {
@@ -20,7 +20,8 @@ public class Person {
     public void removeHand(){
         hand.clear();
     }
-    public void checkForBlackJack(){
+    abstract boolean checkForBlackJack();
+    abstract void handOption();
 
-    }
+
 }
