@@ -1,6 +1,7 @@
 package com.matthew7j;
 
 public class Dealer extends Person {
+
     public boolean checkForBlackJack(){
         Value v1 = hand.get(0).value;
         Value v2 = hand.get(1).value;
