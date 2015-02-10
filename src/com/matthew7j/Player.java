@@ -2,6 +2,7 @@ package com.matthew7j;
 
 public class Player extends Person {
     double money;
+    PlayerRules rules = new PlayerRules();
 
     public Player(double money) {
         this.money = money;
@@ -20,52 +21,11 @@ public class Player extends Person {
     }
 
     public void act() {
-        Value v1 = hand.get(0).value;
-        Value v2 = hand.get(1).value;
-
-        int weight1, weight2;
-
-        switch (v1) {
-            case Two: {
-
-            }
-            case Three: {
-
-            }
-            case Four: {
-
-            }
-            case Five: {
-
-            }
-            case Six: {
-
-            }
-            case Seven: {
-
-            }
-            case Eight: {
-
-            }
-            case Nine: {
-
-            }
-            case Ten: {
-
-            }
-            case Jack: {
-
-            }
-            case Queen: {
-
-            }
-            case King: {
-
-            }
-            case Ace: {
-
-            }
+        int sum = 0;
+        for (Card c : hand){
+            sum += c.getWeight();
         }
+
     }
 
 
