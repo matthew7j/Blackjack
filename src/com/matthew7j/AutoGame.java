@@ -3,8 +3,8 @@ package com.matthew7j;
 import java.util.ArrayList;
 
 public class AutoGame {
-    int numDecks, numPlayers;
-    double amount;
+    private int numDecks, numPlayers;
+    private double amount;
 
     ArrayList<Person> players = new ArrayList<Person>();
 
