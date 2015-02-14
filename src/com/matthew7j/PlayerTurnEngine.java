@@ -39,7 +39,12 @@ public class PlayerTurnEngine {
 
             int dealerCard = dealer.hands.get(0).cards.get(0).getWeight();
 
-            if (checkDoubleConditions(dealerCard, card1, card2));
+            if (checkDoubleConditions(dealerCard, card1, card2)){
+
+            }
+            else if (checkStandConditions(dealerCard, card1, card2)){
+
+            }
 
         }
         else
@@ -56,42 +61,76 @@ public class PlayerTurnEngine {
 
         int playerTotal = c1.getWeight() + c2.getWeight();
         boolean isSoft = false;
+        boolean isPair = false;
 
         if (c1.value == Value.Ace || c2.value == Value.Ace)
             isSoft = true;
+        if (c1.value == c2.value)
+            isPair = true;
 
-        if (playerTotal == 9 && (3 <= dealerCard && dealerCard <= 6)){
-            return true;
+        if (!isPair)
+        {
+            if (playerTotal == 9 && (3 <= dealerCard && dealerCard <= 6)){
+                return true;
+            }
+            if (playerTotal == 10 && (2 <= dealerCard && dealerCard <= 9)){
+                return true;
+            }
+            if (playerTotal == 11 && (2 <= dealerCard && dealerCard <= 10)){
+                return true;
+            }
+            if (playerTotal == 18 && isSoft && (3 <= dealerCard && dealerCard <= 6)){
+                return true;
+            }
+            if (playerTotal == 17 && isSoft && (3 <= dealerCard && dealerCard <= 6)){
+                return true;
+            }
+            if (playerTotal == 16 && isSoft && (4 <= dealerCard && dealerCard <= 6)){
+                return true;
+            }
+            if (playerTotal == 15 && isSoft && (4 <= dealerCard && dealerCard <= 6)){
+                return true;
+            }
+            if (playerTotal == 14 && isSoft && (5 <= dealerCard && dealerCard <= 6)){
+                return true;
+            }
+            if (playerTotal == 13 && isSoft && (5 <= dealerCard && dealerCard <= 6)){
+                return true;
+            }
         }
-        if (playerTotal == 10 && (2 <= dealerCard && dealerCard <= 9)){
-            return true;
-        }
-        if (playerTotal == 11 && (2 <= dealerCard && dealerCard <= 10)){
-            return true;
-        }
-        if (playerTotal == 18 && isSoft && (3 <= dealerCard && dealerCard <= 6)){
-            return true;
-        }
-        if (playerTotal == 17 && isSoft && (3 <= dealerCard && dealerCard <= 6)){
-            return true;
-        }
-        if (playerTotal == 16 && isSoft && (4 <= dealerCard && dealerCard <= 6)){
-            return true;
-        }
-        if (playerTotal == 15 && isSoft && (4 <= dealerCard && dealerCard <= 6)){
-            return true;
-        }
-        if (playerTotal == 14 && isSoft && (5 <= dealerCard && dealerCard <= 6)){
-            return true;
-        }
-        if (playerTotal == 13 && isSoft && (5 <= dealerCard && dealerCard <= 6)){
-            return true;
-        }
-        if (c1.getWeight() == 5 && c2.getWeight() == 5 && (2 <= dealerCard && dealerCard <= 9)){
+        if (isPair && playerTotal == 10) {
             return true;
         }
         return false;
+    }
 
+    private boolean checkStandConditions(int dealerCard, Card c1, Card c2){
+        int playerTotal = c1.getWeight() + c2.getWeight();
+        boolean isSoft = false;
+        boolean isPair = false;
+
+        if (c1.value == Value.Ace || c2.value == Value.Ace)
+            isSoft = true;
+        if (c1.value == c2.value)
+            isPair = true;
+
+        if (!isPair) {
+            if (playerTotal >= 17 && !isSoft) {
+                return true;
+            }
+            if (playerTotal >= 13 && playerTotal <= 16 & dealerCard >= 2 && dealerCard <= 6) {
+                return true;
+            }
+            if (isSoft && playerTotal >= 19) {
+                return true;
+            }
+            if (isSoft && playerTotal == 18 && dealerCard == 2 || dealerCard == 7 || dealerCard == 8)
+                return true;
+        }
+        if (isPair && playerTotal == 20) {
+            return true;
+        }
+        return false;
     }
 
 
