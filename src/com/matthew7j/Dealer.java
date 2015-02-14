@@ -1,21 +1,28 @@
 package com.matthew7j;
 
-public class Dealer extends Person {
-    PlayerRules rules = new PlayerRules();
+import java.util.ArrayList;
 
-    public boolean checkForBlackJack(){
-        Value v1 = hand.get(0).value;
-        Value v2 = hand.get(1).value;
+public class Dealer extends Person {
+
+    public Dealer()
+    {
+        Hand hand = new Hand();
+        hands.add(hand);
+    }
+
+    public boolean checkForBlackJack(Hand h){
+        Value v1 = h.cards.get(0).value;
+        Value v2 = h.cards.get(1).value;
 
         if ((v1.compareTo(Value.Ace) == 0 || v2.compareTo(Value.Ace) == 0) && (v1.compareTo(Value.Ten) == 0 || v1.compareTo(Value.Jack) == 0 || v1.compareTo(Value.Queen) == 0 || v1.compareTo(Value.King) == 0 || v2.compareTo(Value.Ten) == 0 || v2.compareTo(Value.Jack) == 0 || v2.compareTo(Value.Queen) == 0 || v2.compareTo(Value.King) == 0))
         {
-            System.out.println("Dealer got BlackJack with cards: " + hand.get(0).toString() + " and " + hand.get(1).toString() + "! Everyone else loses =(");
+            System.out.println("Dealer got BlackJack with cards: " + h.cards.get(0).toString() + " and " + h.cards.get(1).toString() + "! Everyone else loses =(");
             return true;
         }
         return false;
     }
 
-    public void act() {
+    public void act(ArrayList<Card> dealerCards) {
 
     }
 }

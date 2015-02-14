@@ -1,5 +1,5 @@
 package com.matthew7j;
 
-public class DealerRules {
+public class DealerTurnEngine {
     int alwaysStay, alwaysHit;
 }

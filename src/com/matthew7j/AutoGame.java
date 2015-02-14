@@ -55,25 +55,25 @@ public class AutoGame {
                     System.out.println("Last hand of the shoe!");
                 }
 
-                players.get(j).addCard(c);
+                players.get(j).addCard(c, players.get(j).hands.get(0));
             }
         }
     }
     private void playerTurn(){
         checkBlackJack();
-        playerOption();
+        //playerOption();
     }
     private void playerOption(){
         for (Person p : players){
-            p.act();
+            //p.act();
         }
     }
     private void checkBlackJack(){
         for (Person p : players)
         {
-            if (p.checkForBlackJack()){
+            if (p.checkForBlackJack(p.hands.get(0))){
                 if (p instanceof Player){
-                    p.hand.clear();
+                    p.hands.clear();
                 }
                 else{
                     clearTable();
@@ -85,12 +85,12 @@ public class AutoGame {
     {
         for (Person p : players)
         {
-            p.removeHand();
+            p.hands.clear();
         }
     }
 
     private void getCurrentHand() {
         for (int i = 0; i < players.size(); i++)
-            System.out.println(players.get(i).hand.toString());
+            System.out.println("Player " + players.get(i) + " cards:\n" +  players.get(i).hands.toString());
     }
 }

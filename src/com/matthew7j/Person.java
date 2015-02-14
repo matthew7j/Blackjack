@@ -3,23 +3,18 @@ package com.matthew7j;
 import java.util.ArrayList;
 
 abstract class Person {
-    ArrayList<Card> hand = new ArrayList<Card>();
+    public ArrayList<Hand> hands = new ArrayList<Hand>();
 
     public Person() {
     }
 
-    public void addCard(Card c) {
-        if (hand.size() >= 2)
-            System.out.println("Player cannot have more than 2 cards on initial deal");
-        else
-            hand.add(c);
+    public void addCard(Card c, Hand h) {
+        hands.get(hands.indexOf(h)).addCard(c);
     }
-    public void removeHand(){
-        hand.clear();
+    public void removeHand(Hand h){
+        hands.remove(h);
     }
-    abstract boolean checkForBlackJack();
+    abstract boolean checkForBlackJack(Hand h);
 
-    abstract void act();
-
-
+    abstract void act(ArrayList<Card> cards);
 }

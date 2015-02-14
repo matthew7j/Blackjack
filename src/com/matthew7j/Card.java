@@ -20,7 +20,7 @@ public class Card {
         if (this.value.ordinal() > 9)
             return 10;
         
-        else (this.value.ordinal() == 0)
+        if (this.value.ordinal() == 0)
             return 11;
         
         return this.value.ordinal() + 1;
