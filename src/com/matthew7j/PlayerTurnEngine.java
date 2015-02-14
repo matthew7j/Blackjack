@@ -27,15 +27,12 @@ public class PlayerTurnEngine {
     private void turnEngine(){
         System.out.println("Dealer card: " + dealer.hands.get(0).cards.get(0).value);
         for (Person p : players){
-            int i = 0;
             if (p instanceof  Player) {
                 Iterator<Hand> handsIterator = players.get(players.indexOf(p)).hands.iterator();
                 while(handsIterator.hasNext()){
                     Hand h = handsIterator.next();
                     if (!h.splitAces)
                         handleHand(h, p);
-                    i++;
-                    handsIterator.remove();
                 }
             }
         }
@@ -69,7 +66,7 @@ public class PlayerTurnEngine {
             else if (checkStandConditions(dealerCard, isSoft, isPair, playerTotal)){
                 stand(h);
             }
-            else if (checkSplitConditions(dealerCard, isPair, playerTotal)){
+            else if (checkSplitConditions(dealerCard, isSoft, isPair, playerTotal)){
                 split(card1, card1, h, p);
 
             }
@@ -80,7 +77,7 @@ public class PlayerTurnEngine {
         }
         else
         {
-            if (playerTotal > 21){
+            if (h.getTotal() > 21){
                 System.out.println("Player busted with " + playerTotal);
             }
             else {
@@ -151,27 +148,33 @@ public class PlayerTurnEngine {
 
         if (!isPair) {
             if (playerTotal >= 17 && !isSoft) {
+                System.out.println("1");
                 return true;
             }
-            if (playerTotal >= 13 && playerTotal <= 16 & dealerCard >= 2 && dealerCard <= 6) {
+            if (playerTotal >= 12 && playerTotal <= 16 && dealerCard >= 2 && dealerCard <= 6) {
+                System.out.println("2");
                 return true;
             }
             if (isSoft && playerTotal >= 19) {
+                System.out.println("3");
                 return true;
             }
-            if (isSoft && playerTotal == 18 && dealerCard == 2 || dealerCard == 7 || dealerCard == 8)
+            if (isSoft && playerTotal == 18 && dealerCard == 2 || dealerCard == 7 || dealerCard == 8) {
+                System.out.println("4");
                 return true;
+            }
         }
         if (isPair && playerTotal == 20) {
+            System.out.println("5");
             return true;
         }
         return false;
     }
 
-    private boolean checkSplitConditions(int dealerCard, boolean isPair, int playerTotal){
+    private boolean checkSplitConditions(int dealerCard, boolean isSoft, boolean isPair, int playerTotal){
 
         if (isPair){
-            if (playerTotal == 22){
+            if (playerTotal == 22 && isSoft){
                 return true;
             }
             if (playerTotal == 18 && (dealerCard != 7 || dealerCard != 10 || dealerCard != 11)){
@@ -236,7 +239,4 @@ public class PlayerTurnEngine {
 
         h.addCard(addCard());
     }
-
-
-
 }

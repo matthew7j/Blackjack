@@ -15,11 +15,21 @@ public class Hand {
     }
     public int getTotal()
     {
-        int handTotalWeight = 0;
+        boolean ace = false;
+        int total = 0;
+
         for (Card c : cards){
-            handTotalWeight += c.getWeight();
+            if (c.getWeight() == 11) {
+                total += 1;
+                ace = true;
+            }
+            else
+                total += c.getWeight();
         }
-        return handTotalWeight;
+
+        if (total <= 11 && ace)
+            total += 10;
+        return total;
     }
     public ArrayList<Card> getCards()
     {
