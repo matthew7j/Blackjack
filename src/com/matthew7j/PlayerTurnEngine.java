@@ -2,6 +2,7 @@ package com.matthew7j;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.ListIterator;
 
 public class PlayerTurnEngine {
     private ArrayList<Person> players;
@@ -27,8 +28,8 @@ public class PlayerTurnEngine {
     private void turnEngine(){
         System.out.println("Dealer card: " + dealer.hands.get(0).cards.get(0).value);
         for (Person p : players){
-            if (p instanceof  Player) {
-                Iterator<Hand> handsIterator = players.get(players.indexOf(p)).hands.iterator();
+            if (p instanceof Player) {
+                ListIterator<Hand> handsIterator = players.get(players.indexOf(p)).hands.listIterator();
                 while(handsIterator.hasNext()){
                     Hand h = handsIterator.next();
                     if (!h.splitAces)
@@ -36,7 +37,6 @@ public class PlayerTurnEngine {
                 }
             }
         }
-
     }
 
     private void handleHand(Hand h, Person p){
