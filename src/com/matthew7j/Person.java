@@ -15,6 +15,4 @@ abstract class Person {
         hands.remove(h);
     }
     abstract boolean checkForBlackJack(Hand h);
-
-    abstract void act(ArrayList<Card> cards);
 }

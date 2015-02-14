@@ -60,15 +60,12 @@ public class AutoGame {
         }
     }
     private void playerTurn(){
-        checkBlackJack();
-        //playerOption();
-    }
-    private void playerOption(){
-        for (Person p : players){
-            //p.act();
+        if (!checkBlackJack()){
+            new PlayerTurnEngine(players);
         }
     }
-    private void checkBlackJack(){
+
+    private boolean checkBlackJack(){
         for (Person p : players)
         {
             if (p.checkForBlackJack(p.hands.get(0))){
@@ -77,9 +74,11 @@ public class AutoGame {
                 }
                 else{
                     clearTable();
+                    return true;
                 }
             }
         }
+        return false;
     }
     private void clearTable()
     {

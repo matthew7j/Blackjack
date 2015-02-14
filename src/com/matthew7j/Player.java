@@ -21,8 +21,4 @@ public class Player extends Person {
         }
         return false;
     }
-
-    public void act(ArrayList<Card> dealerCards){
-
-    }
 }
