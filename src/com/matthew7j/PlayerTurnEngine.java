@@ -45,6 +45,12 @@ public class PlayerTurnEngine {
             else if (checkStandConditions(dealerCard, card1, card2)){
 
             }
+            else if (checkSplitConditions(dealerCard, card1, card2)){
+
+            }
+            else{
+                //hit
+            }
 
         }
         else
@@ -129,6 +135,42 @@ public class PlayerTurnEngine {
         }
         if (isPair && playerTotal == 20) {
             return true;
+        }
+        return false;
+    }
+
+    private boolean checkSplitConditions(int dealerCard, Card c1, Card c2){
+        int playerTotal = c1.getWeight() + c2.getWeight();
+        boolean isPair = false;
+
+        if (c1.value == c2.value)
+            isPair = true;
+
+        if (isPair){
+            if (playerTotal == 22){
+                return true;
+            }
+            if (playerTotal == 18 && (dealerCard != 7 || dealerCard != 10 || dealerCard != 11)){
+                return true;
+            }
+            if (playerTotal == 16){
+                return true;
+            }
+            if (playerTotal == 14 && dealerCard <= 7){
+                return true;
+            }
+            if (playerTotal == 12 && dealerCard <= 6){
+                return true;
+            }
+            if (playerTotal == 8 && (dealerCard <= 6 && dealerCard >= 5)){
+                return true;
+            }
+            if (playerTotal == 6 && dealerCard <= 7){
+                return true;
+            }
+            if (playerTotal == 4 && dealerCard <= 7){
+                return true;
+            }
         }
         return false;
     }
