@@ -3,12 +3,14 @@ package com.matthew7j;
 import java.util.ArrayList;
 
 public class PlayerTurnEngine {
-    ArrayList<Person> players;
-    Dealer dealer;
+    private ArrayList<Person> players;
+    private Dealer dealer;
+    private Shoe shoe;
 
-    public PlayerTurnEngine(ArrayList<Person> players)
+    public PlayerTurnEngine(ArrayList<Person> players, Shoe shoe)
     {
         this.players = players;
+        this.shoe = shoe;
         findDealer();
         turnEngine();
     }
@@ -17,62 +19,87 @@ public class PlayerTurnEngine {
         for (Person p : players){
             if (p instanceof Dealer) {
                 dealer = (Dealer) p;
-                players.remove(p);
             }
         }
     }
 
     private void turnEngine(){
+        System.out.println("Dealer card: " + dealer.hands.get(0).cards.get(0).value);
         for (Person p : players){
-            for (Hand h : players.get(players.indexOf(p)).hands){
-                handleHand(h);
+            if (p instanceof  Player) {
+                for (Hand h : players.get(players.indexOf(p)).hands) {
+                    if (!h.splitAces)
+                        handleHand(h, p);
+                }
             }
         }
 
     }
 
-    private void handleHand(Hand h){
+    private void handleHand(Hand h, Person p){
+        System.out.println(p.name + " current hand: \n" + h.toString());
+        boolean isPair = false;
+        boolean isSoft = false;
+        int playerTotal = h.getTotal();
+        System.out.println(p.name + " current total: \n" + playerTotal);
+
+        for (Card c : h.cards){
+            if (c.getWeight() == 11)
+                isSoft = true;
+        }
 
         if (h.cards.size() == 2){
             Card card1 = h.cards.get(0);
             Card card2 = h.cards.get(1);
 
+            if (card1.getWeight() == card2.getWeight())
+                isPair = true;
+
             int dealerCard = dealer.hands.get(0).cards.get(0).getWeight();
 
-            if (checkDoubleConditions(dealerCard, card1, card2)){
+            if (checkDoubleConditions(dealerCard, isSoft, isPair, playerTotal)){
+                doubleDown(h);
+            }
+            else if (checkStandConditions(dealerCard, isSoft, isPair, playerTotal)){
+                stand(h);
+            }
+            else if (checkSplitConditions(dealerCard, isPair, playerTotal)){
+                split(card1, card1, h, p);
 
             }
-            else if (checkStandConditions(dealerCard, card1, card2)){
-
+            else {
+                hit(h);
+                handleHand(h, p);
             }
-            else if (checkSplitConditions(dealerCard, card1, card2)){
-
-            }
-            else{
-                //hit
-            }
-
         }
         else
         {
-            int playerTotal = h.getTotal();
             int dealerCard = dealer.hands.get(0).cards.get(0).getWeight();
 
-
-
+            if (checkStandConditions(dealerCard, isSoft, isPair, playerTotal)){
+                stand(h);
+            }
+            else {
+                hit(h);
+                handleHand(h, p);
+            }
         }
     }
 
-    private boolean checkDoubleConditions(int dealerCard, Card c1, Card c2) {
+    private Card addCard()
+    {
+        Card c = shoe.cards.remove(0);
 
-        int playerTotal = c1.getWeight() + c2.getWeight();
-        boolean isSoft = false;
-        boolean isPair = false;
+        if (c.suit == null) {
+            c = shoe.cards.remove(0);
+            shoe.yellow = true;
+            System.out.println("Last hand of the shoe!");
+        }
 
-        if (c1.value == Value.Ace || c2.value == Value.Ace)
-            isSoft = true;
-        if (c1.value == c2.value)
-            isPair = true;
+        return c;
+    }
+
+    private boolean checkDoubleConditions(int dealerCard, boolean isSoft, boolean isPair, int playerTotal) {
 
         if (!isPair)
         {
@@ -110,15 +137,7 @@ public class PlayerTurnEngine {
         return false;
     }
 
-    private boolean checkStandConditions(int dealerCard, Card c1, Card c2){
-        int playerTotal = c1.getWeight() + c2.getWeight();
-        boolean isSoft = false;
-        boolean isPair = false;
-
-        if (c1.value == Value.Ace || c2.value == Value.Ace)
-            isSoft = true;
-        if (c1.value == c2.value)
-            isPair = true;
+    private boolean checkStandConditions(int dealerCard, boolean isSoft, boolean isPair, int playerTotal){
 
         if (!isPair) {
             if (playerTotal >= 17 && !isSoft) {
@@ -139,12 +158,7 @@ public class PlayerTurnEngine {
         return false;
     }
 
-    private boolean checkSplitConditions(int dealerCard, Card c1, Card c2){
-        int playerTotal = c1.getWeight() + c2.getWeight();
-        boolean isPair = false;
-
-        if (c1.value == c2.value)
-            isPair = true;
+    private boolean checkSplitConditions(int dealerCard, boolean isPair, int playerTotal){
 
         if (isPair){
             if (playerTotal == 22){
@@ -173,6 +187,44 @@ public class PlayerTurnEngine {
             }
         }
         return false;
+    }
+
+    private void hit(Hand h){
+        System.out.println("Player is hitting with " + h.getTotal());
+        h.addCard(addCard());
+    }
+    private void stand(Hand h){
+        System.out.println("Player is staying with " + h.getTotal());
+    }
+    private void split(Card card1, Card card2, Hand h, Person p){
+
+        System.out.println("Player is splitting with Cards:  " + card1 + " and " + card2);
+
+        if (card1.getWeight() != 11) {
+            Hand hand = new Hand();
+            hand.addCard(card2);
+            h.cards.remove(card2);
+
+            p.hands.add(hand);
+            handleHand(h, p);
+        }
+        else
+        {
+            Hand hand = new Hand();
+            hand.addCard(card2);
+            h.cards.remove(card2);
+
+            hand.addCard(addCard());
+            h.cards.add(addCard());
+            hand.splitAces = true;
+            h.splitAces = true;
+            p.hands.add(hand);
+        }
+    }
+    private void doubleDown(Hand h){
+        System.out.println("Player is doubling down with " + h.getTotal());
+
+        h.addCard(addCard());
     }
 
 

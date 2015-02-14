@@ -5,10 +5,11 @@ import java.util.ArrayList;
 public class Player extends Person {
     private double money;
 
-    public Player(double money) {
+    public Player(double money, String name) {
         this.money = money;
         Hand hand = new Hand();
         hands.add(hand);
+        this.name = name;
     }
 
     public boolean checkForBlackJack(Hand h) {

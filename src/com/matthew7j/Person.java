@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 abstract class Person {
     public ArrayList<Hand> hands = new ArrayList<Hand>();
+    public String name;
 
     public Person() {
     }

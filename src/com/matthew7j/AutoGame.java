@@ -30,16 +30,17 @@ public class AutoGame {
     }
 
     private void initPlayers() {
-        for (int i = 0; i < numPlayers; i++)
-            players.add(new Player(amount));
+        for (int i = 0; i < numPlayers; i++) {
+            String name = "Player " + i;
+            players.add(new Player(amount, name));
+        }
         players.add(new Dealer());
     }
 
     private void dealShoe(Shoe shoe) {
         while (!shoe.yellow) {
             dealHand(shoe);
-            playerTurn();
-            getCurrentHand();
+            playerTurn(shoe);
             clearTable();
         }
     }
@@ -59,9 +60,9 @@ public class AutoGame {
             }
         }
     }
-    private void playerTurn(){
+    private void playerTurn(Shoe shoe){
         if (!checkBlackJack()){
-            new PlayerTurnEngine(players);
+            new PlayerTurnEngine(players, shoe);
         }
     }
 
@@ -85,6 +86,8 @@ public class AutoGame {
         for (Person p : players)
         {
             p.hands.clear();
+            Hand hand = new Hand();
+            p.hands.add(hand);
         }
     }
 

@@ -8,6 +8,7 @@ public class Dealer extends Person {
     {
         Hand hand = new Hand();
         hands.add(hand);
+        this.name = "Deala";
     }
 
     public boolean checkForBlackJack(Hand h){

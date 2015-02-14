@@ -23,7 +23,4 @@ public class Game {
         System.out.println(shoe.toString());
     }
 
-    public void addPlayer(double money) {
-        this.players.add(new Player(money));
-    }
 }
