@@ -1,6 +1,7 @@
 package com.matthew7j;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class PlayerTurnEngine {
     private ArrayList<Person> players;
@@ -26,10 +27,15 @@ public class PlayerTurnEngine {
     private void turnEngine(){
         System.out.println("Dealer card: " + dealer.hands.get(0).cards.get(0).value);
         for (Person p : players){
+            int i = 0;
             if (p instanceof  Player) {
-                for (Hand h : players.get(players.indexOf(p)).hands) {
+                Iterator<Hand> handsIterator = players.get(players.indexOf(p)).hands.iterator();
+                while(handsIterator.hasNext()){
+                    Hand h = handsIterator.next();
                     if (!h.splitAces)
                         handleHand(h, p);
+                    i++;
+                    handsIterator.remove();
                 }
             }
         }
@@ -37,11 +43,11 @@ public class PlayerTurnEngine {
     }
 
     private void handleHand(Hand h, Person p){
-        System.out.println(p.name + " current hand: \n" + h.toString());
+        System.out.println("\n" + p.name + " current hand: \n" + h.toString());
         boolean isPair = false;
         boolean isSoft = false;
         int playerTotal = h.getTotal();
-        System.out.println(p.name + " current total: \n" + playerTotal);
+        System.out.println(p.name + " current total: " + playerTotal);
 
         for (Card c : h.cards){
             if (c.getWeight() == 11)
@@ -74,14 +80,18 @@ public class PlayerTurnEngine {
         }
         else
         {
-            int dealerCard = dealer.hands.get(0).cards.get(0).getWeight();
-
-            if (checkStandConditions(dealerCard, isSoft, isPair, playerTotal)){
-                stand(h);
+            if (playerTotal > 21){
+                System.out.println("Player busted with " + playerTotal);
             }
             else {
-                hit(h);
-                handleHand(h, p);
+                int dealerCard = dealer.hands.get(0).cards.get(0).getWeight();
+
+                if (checkStandConditions(dealerCard, isSoft, isPair, playerTotal)) {
+                    stand(h);
+                } else {
+                    hit(h);
+                    handleHand(h, p);
+                }
             }
         }
     }
