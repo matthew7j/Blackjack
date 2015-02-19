@@ -27,23 +27,28 @@ public class PlayerTurnEngine {
 
     private void turnEngine(){
         System.out.println("Dealer card: " + dealer.hands.get(0).cards.get(0).value);
+        int added ;
         for (Person p : players){
             if (p instanceof Player) {
-                ListIterator<Hand> handsIterator = players.get(players.indexOf(p)).hands.listIterator();
-                while(handsIterator.hasNext()){
-                    Hand h = handsIterator.next();
+                int length = players.get(players.indexOf(p)).hands.size();
+                for (int i = 0; i < length; i++)
+                {
+                    added = 0;
+                    Hand h = players.get(players.indexOf(p)).hands.get(i);
                     if (!h.splitAces)
-                        handleHand(h, p);
+                        added = handleHand(h, p);
+                    length += added;
                 }
             }
         }
     }
 
-    private void handleHand(Hand h, Person p){
+    private int handleHand(Hand h, Person p){
         System.out.println("\n" + p.name + " current hand: \n" + h.toString());
         boolean isPair = false;
         boolean isSoft = false;
         int playerTotal = h.getTotal();
+        int added = 0;
         System.out.println(p.name + " current total: " + playerTotal);
 
         for (Card c : h.cards){
@@ -68,7 +73,7 @@ public class PlayerTurnEngine {
             }
             else if (checkSplitConditions(dealerCard, isSoft, isPair, playerTotal)){
                 split(card1, card1, h, p);
-
+                added += 1;
             }
             else {
                 hit(h);
@@ -91,6 +96,7 @@ public class PlayerTurnEngine {
                 }
             }
         }
+        return added;
     }
 
     private Card addCard()
