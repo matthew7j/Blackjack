@@ -40,7 +40,10 @@ public class AutoGame {
     private void dealShoe(Shoe shoe) {
         while (!shoe.yellow) {
             dealHand(shoe);
-            playerTurn(shoe);
+            if (!checkBlackJack()){
+                playerTurn(shoe);
+                dealerTurn(shoe);
+            }
             clearTable();
         }
     }
@@ -61,9 +64,10 @@ public class AutoGame {
         }
     }
     private void playerTurn(Shoe shoe){
-        if (!checkBlackJack()){
-            new PlayerTurnEngine(players, shoe);
-        }
+        new PlayerTurnEngine(players, shoe);
+    }
+    private void dealerTurn(Shoe shoe){
+        new DealerTurnEngine(players, shoe);
     }
 
     private boolean checkBlackJack(){
@@ -74,7 +78,6 @@ public class AutoGame {
                     p.hands.clear();
                 }
                 else{
-                    clearTable();
                     return true;
                 }
             }
