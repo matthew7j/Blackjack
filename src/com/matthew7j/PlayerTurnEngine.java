@@ -165,7 +165,7 @@ public class PlayerTurnEngine {
                 System.out.println("3");
                 return true;
             }
-            if (isSoft && playerTotal == 18 && dealerCard == 2 || dealerCard == 7 || dealerCard == 8) {
+            if ((isSoft && playerTotal == 18) && (dealerCard == 2 || dealerCard == 7 || dealerCard == 8)) {
                 System.out.println("4");
                 return true;
             }
@@ -244,5 +244,6 @@ public class PlayerTurnEngine {
         System.out.println("Player is doubling down with " + h.getTotal());
 
         h.addCard(addCard());
+        System.out.println("Player has " + h.getTotal() + " after double down");
     }
 }
