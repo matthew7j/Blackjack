@@ -43,9 +43,14 @@ public class AutoGame {
             if (!checkBlackJack()){
                 playerTurn(shoe);
                 dealerTurn(shoe);
+                checkResults();
             }
             clearTable();
         }
+    }
+
+    private void checkResults(){
+        new Results(players);
     }
 
     private void dealHand(Shoe shoe) {
