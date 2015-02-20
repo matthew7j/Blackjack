@@ -72,8 +72,8 @@ public class PlayerTurnEngine {
                 stand(h);
             }
             else if (checkSplitConditions(dealerCard, isSoft, isPair, playerTotal)){
-                split(card1, card2, h, p);
-                added += 1;
+                if (split(card1, card2, h, p))
+                    added += 1;
             }
             else {
                 hit(h);
@@ -216,29 +216,43 @@ public class PlayerTurnEngine {
     private void stand(Hand h){
         System.out.println("Player is staying with " + h.getTotal());
     }
-    private void split(Card card1, Card card2, Hand h, Person p){
+    private boolean split(Card card1, Card card2, Hand h, Person p){
 
-        System.out.println("Player is splitting with Cards:  " + card1 + " and " + card2);
+        Player player = (Player)p;
 
-        if (card1.getWeight() != 11) {
-            Hand hand = new Hand();
-            hand.addCard(card2);
-            h.cards.remove(card2);
-
-            p.hands.add(hand);
+        if (player.getChips() < h.bet)
+        {
+            System.out.println(p.name + " cannot split this hand because they do not have sufficient chips");
+            hit(h);
             handleHand(h, p);
+            return false;
         }
         else
         {
-            Hand hand = new Hand();
-            hand.addCard(card2);
-            h.cards.remove(card2);
+            System.out.println(p.name + " is splitting with Cards:  " + card1 + " and " + card2);
+            if (card1.getWeight() != 11) {
+                Hand hand = new Hand();
+                hand.bet = h.bet;
+                hand.addCard(card2);
+                h.cards.remove(card2);
 
-            hand.addCard(addCard());
-            h.cards.add(addCard());
-            hand.splitAces = true;
-            h.splitAces = true;
-            p.hands.add(hand);
+                p.hands.add(hand);
+                handleHand(h, p);
+            }
+            else
+            {
+                Hand hand = new Hand();
+                hand.bet = h.bet;
+                hand.addCard(card2);
+                h.cards.remove(card2);
+
+                hand.addCard(addCard());
+                h.cards.add(addCard());
+                hand.splitAces = true;
+                h.splitAces = true;
+                p.hands.add(hand);
+            }
+            return true;
         }
     }
     private void doubleDown(Hand h){

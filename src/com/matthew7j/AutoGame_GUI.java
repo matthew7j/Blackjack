@@ -6,12 +6,13 @@ import java.awt.event.ActionListener;
 
 public class AutoGame_GUI extends JFrame {
     protected int numDecks, numPlayers;
-    protected double amount;
+    protected double amount, handAmount;
     private JTextField decksTextField;
     private JTextField playersTextField;
     private JButton simulateButton;
     private JPanel mainPanel;
     private JTextField amountTextField;
+    private JTextField handAmountTextField;
 
     public AutoGame_GUI() {
         add(mainPanel);
@@ -24,9 +25,11 @@ public class AutoGame_GUI extends JFrame {
                 numDecks = Integer.parseInt(decksTextField.getText());
                 numPlayers = Integer.parseInt(playersTextField.getText());
                 amount = Double.parseDouble(amountTextField.getText());
+                handAmount = Double.parseDouble(handAmountTextField.getText());
 
-                new AutoGame(numDecks, numPlayers, amount);
+                new AutoGame(numDecks, numPlayers, amount, handAmount);
             }
         });
+
     }
 }
