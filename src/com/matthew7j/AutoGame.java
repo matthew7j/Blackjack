@@ -135,7 +135,11 @@ public class AutoGame {
         {
             if (p.checkForBlackJack(p.hands.get(0))){
                 if (p instanceof Player){
+                    Hand h =  p.hands.get(0);
+                    ((Player) p).addChips(h.bet * 1.5);
+                    System.out.println(p.name + " won " + h.bet * 1.5 + " with hand: \n" + h.cards.toString());
                     p.hands.clear();
+
                 }
                 else{
                     return true;

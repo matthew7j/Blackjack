@@ -68,33 +68,6 @@ public class DealerTurnEngine {
         return c;
     }
 
-    private boolean checkStandConditions(int dealerCard, boolean isSoft, boolean isPair, int playerTotal){
-
-        if (!isPair) {
-            if (playerTotal >= 17 && !isSoft) {
-                System.out.println("1");
-                return true;
-            }
-            if (playerTotal >= 12 && playerTotal <= 16 && dealerCard >= 2 && dealerCard <= 6) {
-                System.out.println("2");
-                return true;
-            }
-            if (isSoft && playerTotal >= 19) {
-                System.out.println("3");
-                return true;
-            }
-            if ((isSoft && playerTotal == 18) && (dealerCard == 2 || dealerCard == 7 || dealerCard == 8)) {
-                System.out.println("4");
-                return true;
-            }
-        }
-        if (isPair && playerTotal == 20) {
-            System.out.println("5");
-            return true;
-        }
-        return false;
-    }
-
     private void hit(Hand h){
         System.out.println("Dealer is hitting with " + h.getTotal());
         h.addCard(addCard());

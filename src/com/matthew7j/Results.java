@@ -25,7 +25,7 @@ public class Results {
         Player player = (Player)p;
         Hand dealerHand = dealer.hands.get(0);
         for (Hand h : p.hands){
-            if ((h.getTotal() > dealerHand.getTotal() && !h.busted) || dealerHand.getTotal() > 21){
+            if ((h.getTotal() > dealerHand.getTotal() && !h.busted) || (dealerHand.getTotal() > 21 && !h.busted)){
                 System.out.println(p.name + " won " + h.bet + " with hand: \n" + h.cards.toString());
                 player.addChips(h.bet);
             }
