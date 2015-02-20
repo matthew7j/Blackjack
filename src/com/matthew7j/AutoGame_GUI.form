@@ -10,7 +10,9 @@
     <children>
       <component id="c81c4" class="javax.swing.JLabel">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="104" height="16"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Number of Decks"/>
@@ -18,7 +20,9 @@
       </component>
       <component id="6220c" class="javax.swing.JLabel">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="104" height="16"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Number of Players"/>
@@ -42,7 +46,9 @@
       </component>
       <component id="4b6f0" class="javax.swing.JLabel">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="104" height="16"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Starting Amount "/>
@@ -76,7 +82,9 @@
       </component>
       <component id="47ada" class="javax.swing.JLabel" binding="handLabel">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="104" height="16"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Hand Amount"/>
@@ -92,7 +100,9 @@
       </component>
       <component id="d2834" class="javax.swing.JLabel">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="104" height="16"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Table Minimum"/>
@@ -108,7 +118,9 @@
       </component>
       <component id="a058d" class="javax.swing.JLabel">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="104" height="16"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Table Maximum"/>

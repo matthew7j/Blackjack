@@ -15,6 +15,7 @@ public class AutoGame_GUI extends JFrame {
     private JTextField handAmountTextField;
     private JTextField tableMinTextField;
     private JTextField tableMaxTextField;
+    private JLabel handLabel;
 
     public AutoGame_GUI() {
         add(mainPanel);

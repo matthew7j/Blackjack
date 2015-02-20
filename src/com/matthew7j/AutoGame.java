@@ -80,7 +80,7 @@ public class AutoGame {
                 Player player = (Player)p;
                 if (player.getChips() <= 0){
                     int dialogButton = JOptionPane.YES_NO_OPTION;
-                    int answer = JOptionPane.showConfirmDialog(null, "You have run out of chips.\nDo you want to buy more?", "Warning", dialogButton);
+                    int answer = JOptionPane.showConfirmDialog(null, p.name + ", you have run out of chips.\nDo you want to buy more?", "Warning", dialogButton);
                     if (answer == JOptionPane.YES_OPTION){
                         String money = JOptionPane.showInputDialog("How much do you want to buy in for? ");
                         double amount = Double.parseDouble(money);

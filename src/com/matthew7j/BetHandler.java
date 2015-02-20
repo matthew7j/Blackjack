@@ -15,6 +15,6 @@ public class BetHandler {
     }
 
     private void betHandlerEngine(){
-
+        p.hands.get(0).bet = amount;
     }
 }
