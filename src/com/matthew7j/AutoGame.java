@@ -1,5 +1,6 @@
 package com.matthew7j;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class AutoGame {
@@ -42,18 +43,63 @@ public class AutoGame {
             dealHand(shoe);
             if (!checkBlackJack()){
                 playerTurn(shoe);
-                dealerTurn(shoe);
+                if (checkTable()) {
+                    dealerTurn(shoe);
+                }
                 checkResults();
             }
             clearTable();
         }
     }
 
+    private boolean checkTable(){
+        for (Person p : players){
+            if (p instanceof Player){
+                for (Hand h : p.hands){
+                    if (!h.busted){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     private void checkResults(){
         new Results(players);
     }
 
+    private void checkTableChips(){
+
+        ArrayList<Player> playersToRemove = new ArrayList<Player>();
+        for (Person p : players){
+            if (p instanceof Player){
+                Player player = (Player)p;
+                if (player.getChips() <= 0){
+                    int dialogButton = JOptionPane.YES_NO_OPTION;
+                    int answer = JOptionPane.showConfirmDialog(null, "You have run out of chips.\nDo you want to buy more?", "Warning", dialogButton);
+                    if (answer == JOptionPane.YES_OPTION){
+                        String money = JOptionPane.showInputDialog("How much do you want to buy in for? ");
+                        double amount = Double.parseDouble(money);
+
+                        ((Player) p).addChips(amount);
+                    }
+                    else{
+                        playersToRemove.add((Player)p);
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < playersToRemove.size(); i++)
+        {
+            players.remove(playersToRemove.get(i));
+        }
+    }
+
     private void dealHand(Shoe shoe) {
+        checkTableChips();
+
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < players.size(); j++) {
                 Card c = shoe.cards.remove(0);

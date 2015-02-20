@@ -24,10 +24,10 @@ public class Results {
     {
         Hand dealerHand = dealer.hands.get(0);
         for (Hand h : p.hands){
-            if ((h.getTotal() > dealerHand.getTotal() && h.getTotal() <= 21) || dealerHand.getTotal() > 21){
+            if ((h.getTotal() > dealerHand.getTotal() && !h.busted) || dealerHand.getTotal() > 21){
                 System.out.println(p.name + " won " + h.bet + " with hand: \n" + h.cards.toString());
             }
-            else if (h.getTotal() == dealerHand.getTotal() && h.getTotal() <= 21)
+            else if (h.getTotal() == dealerHand.getTotal() && !h.busted)
             {
                 System.out.println(p.name + " pushed with hand: \n" + h.cards.toString());
             }

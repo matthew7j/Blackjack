@@ -6,6 +6,7 @@ public class Hand {
     ArrayList<Card> cards = new ArrayList<Card>();
     boolean splitAces = false;
     double bet;
+    boolean busted = false;
 
     public Hand()
     {

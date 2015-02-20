@@ -72,7 +72,7 @@ public class PlayerTurnEngine {
                 stand(h);
             }
             else if (checkSplitConditions(dealerCard, isSoft, isPair, playerTotal)){
-                split(card1, card1, h, p);
+                split(card1, card2, h, p);
                 added += 1;
             }
             else {
@@ -84,6 +84,7 @@ public class PlayerTurnEngine {
         {
             if (h.getTotal() > 21){
                 System.out.println("Player busted with " + playerTotal);
+                h.busted = true;
             }
             else {
                 int dealerCard = dealer.hands.get(0).cards.get(0).getWeight();

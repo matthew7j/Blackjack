@@ -22,4 +22,13 @@ public class Player extends Person {
         }
         return false;
     }
+
+    public double getChips()
+    {
+        return money;
+    }
+    public void addChips(double amount)
+    {
+        money += amount;
+    }
 }
