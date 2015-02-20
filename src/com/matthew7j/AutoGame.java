@@ -5,15 +5,17 @@ import java.util.ArrayList;
 
 public class AutoGame {
     private int numDecks, numPlayers;
-    private double amount, handAmount;
+    private double amount, handAmount, tableMinimum, tableMaximum;
 
     ArrayList<Person> players = new ArrayList<Person>();
 
-    public AutoGame(int numDecks, int numPlayers, double amount, double handAmount) {
+    public AutoGame(int numDecks, int numPlayers, double amount, double handAmount, double tableMinimum, double tableMaximum) {
         this.numDecks = numDecks;
         this.numPlayers = numPlayers;
         this.amount = amount;
         this.handAmount = handAmount;
+        this.tableMinimum = tableMinimum;
+        this.tableMaximum = tableMaximum;
 
         dealShoe(initGame());
     }
@@ -112,10 +114,15 @@ public class AutoGame {
                 }
 
                 players.get(j).addCard(c, players.get(j).hands.get(0));
-                players.get(j).hands.get(0).bet = handAmount;
+
+                if (players.get(j) instanceof  Player){
+                    Player player = (Player) players.get(j);
+                    new BetHandler(player, handAmount, tableMinimum, tableMaximum);
+                }
             }
         }
     }
+
     private void playerTurn(Shoe shoe){
         new PlayerTurnEngine(players, shoe);
     }

@@ -31,4 +31,7 @@ public class Player extends Person {
     {
         money += amount;
     }
+    public void removeChips(double amount){
+        money -= amount;
+    }
 }
