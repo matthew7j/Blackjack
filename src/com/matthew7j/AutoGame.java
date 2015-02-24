@@ -4,10 +4,11 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class AutoGame {
-    private int numDecks, numPlayers;
+    private int numDecks, numPlayers, totalHands;
     private double amount, handAmount, tableMinimum, tableMaximum;
 
-    ArrayList<Person> players = new ArrayList<Person>();
+    private ArrayList<Person> players = new ArrayList<Person>();
+    private Statistics stats;
 
     public AutoGame(int numDecks, int numPlayers, double amount, double handAmount, double tableMinimum, double tableMaximum) {
         this.numDecks = numDecks;
@@ -18,6 +19,8 @@ public class AutoGame {
         this.tableMaximum = tableMaximum;
 
         dealShoe(initGame());
+        stats.addData(players, totalHands);
+        stats.composeGraph();
     }
 
     private Shoe initGame() {
@@ -102,6 +105,14 @@ public class AutoGame {
 
     private void dealHand(Shoe shoe) {
         checkTableChips();
+        if (totalHands != 0){
+            stats.addData(players, totalHands);
+        }
+        else
+        {
+            stats = new Statistics("BlackJack Statistics" , players, totalHands);
+        }
+        totalHands++;
 
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < players.size(); j++) {
