@@ -3,7 +3,6 @@ package com.matthew7j;
 import javax.swing.*;
 import java.util.ArrayList;
 
-
 public class AutoGame {
     private int numDecks, numPlayers;
     private double amount, handAmount, tableMinimum, tableMaximum;

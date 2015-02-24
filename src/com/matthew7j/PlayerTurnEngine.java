@@ -47,6 +47,7 @@ public class PlayerTurnEngine {
         System.out.println("\n" + p.name + " current hand: \n" + h.toString());
         boolean isPair = false;
         boolean isSoft = false;
+        int softTest = 0;
         int playerTotal = h.getTotal();
         int added = 0;
         System.out.println(p.name + " current total: " + playerTotal);
@@ -54,6 +55,12 @@ public class PlayerTurnEngine {
         for (Card c : h.cards){
             if (c.getWeight() == 11)
                 isSoft = true;
+            else
+                softTest += c.getWeight();
+        }
+
+        if (isSoft && softTest > 10){
+            isSoft = false;
         }
 
         if (h.cards.size() == 2){
