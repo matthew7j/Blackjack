@@ -17,7 +17,7 @@ public class Player extends Person {
         Value v2 = h.cards.get(1).value;
 
         if ((v1.compareTo(Value.Ace) == 0 || v2.compareTo(Value.Ace) == 0) && (v1.compareTo(Value.Ten) == 0 || v1.compareTo(Value.Jack) == 0 || v1.compareTo(Value.Queen) == 0 || v1.compareTo(Value.King) == 0 || v2.compareTo(Value.Ten) == 0 || v2.compareTo(Value.Jack) == 0 || v2.compareTo(Value.Queen) == 0 || v2.compareTo(Value.King) == 0)) {
-            System.out.println("\nPlayer got BlackJack with cards: " + h.cards.get(0).value.toString() + " and " + h.cards.get(1).value.toString() + "!");
+            //System.out.println("\nPlayer got BlackJack with cards: " + h.cards.get(0).value.toString() + " and " + h.cards.get(1).value.toString() + "!");
             return true;
         }
         return false;

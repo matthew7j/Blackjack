@@ -19,13 +19,16 @@ public class AutoGame {
         this.tableMaximum = tableMaximum;
 
         initPlayers();
-
+        long startTime = System.nanoTime();
         for (int i = 0; i < 100; i++) {
             dealShoe(initGame());
             stats.addData(players, totalHands);
             stats.composeGraph();
-            System.out.println("\n\n\n\n\n\nNEW SHOE\n\n\n\n\n\n");
+            //System.out.println("\n\n\n\n\n\nNEW SHOE number " + i + "\n\n\n\n\n\n");
         }
+        long endTime = System.nanoTime();
+        long duration = (endTime - startTime);
+        System.out.println("TOTAL TIME: " + duration/1000000000 + "s");
     }
 
     private Shoe initGame() {
@@ -125,7 +128,7 @@ public class AutoGame {
                 if (c.suit == null) {
                     c = shoe.cards.remove(0);
                     shoe.yellow = true;
-                    System.out.println("Last hand of the shoe!");
+                    //System.out.println("Last hand of the shoe!");
                 }
 
                 players.get(j).addCard(c, players.get(j).hands.get(0));
@@ -152,7 +155,7 @@ public class AutoGame {
                 if (p instanceof Player){
                     Hand h =  p.hands.get(0);
                     ((Player) p).addChips(h.bet * 1.5);
-                    System.out.println(p.name + " won " + h.bet * 1.5 + " with hand: \n" + h.cards.toString());
+                    //System.out.println(p.name + " won " + h.bet * 1.5 + " with hand: \n" + h.cards.toString());
                     p.hands.clear();
 
                 }
@@ -174,7 +177,7 @@ public class AutoGame {
     }
 
     private void getCurrentHand() {
-        for (int i = 0; i < players.size(); i++)
-            System.out.println("Player " + players.get(i) + " cards:\n" +  players.get(i).hands.toString());
+       // for (int i = 0; i < players.size(); i++)
+           // //System.out.println("Player " + players.get(i) + " cards:\n" +  players.get(i).hands.toString());
     }
 }

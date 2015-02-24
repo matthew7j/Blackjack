@@ -36,7 +36,7 @@ public class DealerTurnEngine {
     }
 
     private void handleHand(Hand h, Dealer dealer){
-        System.out.println("\n" + dealer.name + " current hand: \n" + h.toString());
+        //System.out.println("\n" + dealer.name + " current hand: \n" + h.toString());
         int dealerTotal = h.getTotal();
 
         if (dealerTotal <= 16)
@@ -62,17 +62,17 @@ public class DealerTurnEngine {
         if (c.suit == null) {
             c = shoe.cards.remove(0);
             shoe.yellow = true;
-            System.out.println("Last hand of the shoe!");
+            //System.out.println("Last hand of the shoe!");
         }
 
         return c;
     }
 
     private void hit(Hand h){
-        System.out.println("Dealer is hitting with " + h.getTotal());
+        //System.out.println("Dealer is hitting with " + h.getTotal());
         h.addCard(addCard());
     }
     private void stand(Hand h){
-        System.out.println("Dealer is staying with " + h.getTotal());
+        //System.out.println("Dealer is staying with " + h.getTotal());
     }
 }

@@ -20,7 +20,7 @@ public class Game {
         Shoe shoe = new Shoe(decks);
         shoe.shuffle();
 
-        System.out.println(shoe.toString());
+        //System.out.println(shoe.toString());
     }
 
 }
