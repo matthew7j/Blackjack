@@ -18,13 +18,17 @@ public class AutoGame {
         this.tableMinimum = tableMinimum;
         this.tableMaximum = tableMaximum;
 
-        dealShoe(initGame());
-        stats.addData(players, totalHands);
-        stats.composeGraph();
+        initPlayers();
+
+        for (int i = 0; i < 100; i++) {
+            dealShoe(initGame());
+            stats.addData(players, totalHands);
+            stats.composeGraph();
+            System.out.println("\n\n\n\n\n\nNEW SHOE\n\n\n\n\n\n");
+        }
     }
 
     private Shoe initGame() {
-        initPlayers();
         return initializeShoe();
     }
 

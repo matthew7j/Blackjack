@@ -1,5 +1,6 @@
 package com.matthew7j;
 
+import javafx.scene.chart.CategoryAxis;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -66,9 +67,22 @@ public class Statistics extends ApplicationFrame
         plot.setDomainGridlinePaint(Color.green);
         plot.setRangeGridlinePaint(Color.green);
 
+        plot.getDomainAxis().setLabelPaint(Color.orange);
+        plot.getRangeAxis().setLabelPaint(Color.orange);
+        plot.getDomainAxis().setTickLabelPaint(Color.orange);
+        plot.getRangeAxis().setTickLabelPaint(Color.orange);
+        plot.getDomainAxis().setTickMarkPaint(Color.orange);
+        plot.getRangeAxis().setTickMarkPaint(Color.orange);
+
+        plot.setRangeGridlinePaint(Color.cyan);
+        plot.setDomainGridlinePaint(Color.cyan);
+        plot.setDomainGridlinesVisible(true);
+
         final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
         rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
         rangeAxis.setAutoRangeIncludesZero(true);
+
+
 
         return chart;
     }
