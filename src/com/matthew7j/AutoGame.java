@@ -22,14 +22,12 @@ public class AutoGame {
 
         initPlayers();
         long startTime = System.nanoTime();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             dealShoe(initGame());
             playerChipsLineGraph.addData(players, totalHands);
             playerWinPercentageLineGraph.addData(players, totalHands);
             playerLostPercentageLineGraph.addData(players, totalHands);
-            playerChipsLineGraph.composeGraph();
-            playerWinPercentageLineGraph.composeGraph();
-            playerLostPercentageLineGraph.composeGraph();
+
 
             for (Person p : players){
                 if (p instanceof Player){
@@ -46,6 +44,10 @@ public class AutoGame {
         long endTime = System.nanoTime();
         long duration = (endTime - startTime);
         System.out.println("TOTAL TIME: " + duration/1000000000 + "s");
+
+        playerChipsLineGraph.composeGraph();
+        playerWinPercentageLineGraph.composeGraph();
+        playerLostPercentageLineGraph.composeGraph();
 
     }
 
