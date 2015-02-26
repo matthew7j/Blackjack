@@ -37,7 +37,7 @@ public class AutoGame_GUI extends JFrame {
         });
         */
 
-        new AutoGame(7, 6, 1000, 20, 1, 100);
+        new AutoGame(1, 2, 1000, 20, 1, 100);
 
     }
 }

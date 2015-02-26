@@ -50,6 +50,18 @@ public class Player extends Person {
         totalHands++;
     }
     public double getPercentageHandsWon(){
-        return handsWon / totalHands;
+        if (totalHands == 0)
+            return 0;
+        return ((double)handsWon / (double)totalHands) * 100;
+    }
+    public double getPercentageHandsLost(){
+        if (totalHands == 0)
+            return 0;
+        return (handsLost / totalHands) * 100;
+    }
+    public double getPercentageHandsPushed(){
+        if (totalHands == 0)
+            return 0;
+        return (handsPushed / (double)totalHands) * 100;
     }
 }

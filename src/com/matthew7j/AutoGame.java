@@ -9,6 +9,7 @@ public class AutoGame {
 
     private ArrayList<Person> players = new ArrayList<Person>();
     private PlayerChipLineGraph playerChipsLineGraph;
+    private PlayerWinPercentageLineGraph playerWinPercentageLineGraph;
 
     public AutoGame(int numDecks, int numPlayers, double amount, double handAmount, double tableMinimum, double tableMaximum) {
         this.numDecks = numDecks;
@@ -20,10 +21,12 @@ public class AutoGame {
 
         initPlayers();
         long startTime = System.nanoTime();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
             dealShoe(initGame());
             playerChipsLineGraph.addData(players, totalHands);
+            playerWinPercentageLineGraph.addData(players, totalHands);
             playerChipsLineGraph.composeGraph();
+            playerWinPercentageLineGraph.composeGraph();
             System.out.println("\n\n\n\n\n\nNEW SHOE number " + i + "\n\n\n\n\n\n");
         }
         long endTime = System.nanoTime();
@@ -114,10 +117,12 @@ public class AutoGame {
         checkTableChips();
         if (totalHands != 0){
             playerChipsLineGraph.addData(players, totalHands);
+            playerWinPercentageLineGraph.addData(players, totalHands);
         }
         else
         {
-            playerChipsLineGraph = new PlayerChipLineGraph("BlackJack PlayerChipLineGraph" , players, totalHands);
+            playerChipsLineGraph = new PlayerChipLineGraph("BlackJack Player Chips Line Graph" , players, totalHands);
+            playerWinPercentageLineGraph = new PlayerWinPercentageLineGraph("BlackJack Player Win Percentage Line Graph" , players, totalHands);
         }
         totalHands++;
 
