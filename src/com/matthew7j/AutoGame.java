@@ -22,12 +22,15 @@ public class AutoGame {
 
         initPlayers();
         long startTime = System.nanoTime();
-        for (int i = 0; i < 100; i++) {
-            dealShoe(initGame());
+        for (int i = 0; i < 10000; i++) {
+            boolean cont = dealShoe(initGame());
+
+            if (!cont)
+                break;
+
             playerChipsLineGraph.addData(players, totalHands);
             playerWinPercentageLineGraph.addData(players, totalHands);
             playerLostPercentageLineGraph.addData(players, totalHands);
-
 
             for (Person p : players){
                 if (p instanceof Player){
@@ -71,21 +74,42 @@ public class AutoGame {
         players.add(new Dealer());
     }
 
-    private void dealShoe(Shoe shoe) {
+    private boolean dealShoe(Shoe shoe) {
+        boolean playersAvailable;
         while (!shoe.yellow) {
-            dealHand(shoe);
-            if (!checkBlackJack()){
-                playerTurn(shoe);
-                if (checkTable()) {
-                    dealerTurn(shoe);
+            playersAvailable = checkPlayers();
+            if (playersAvailable) {
+                dealHand(shoe);
+                if (!checkBlackJack()) {
+                    playerTurn(shoe);
+                    if (checkTable()) {
+                        dealerTurn(shoe);
+                    }
+                    checkResults();
+                } else {
+                    checkResults();
                 }
-                checkResults();
+                clearTable();
+                return true;
             }
-            else {
-                checkResults();
+            else
+            {
+                return false;
             }
-            clearTable();
         }
+        return checkPlayers();
+    }
+
+    private boolean checkPlayers()
+    {
+        for (Person p : players)
+        {
+            if (p instanceof Player)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean checkTable(){

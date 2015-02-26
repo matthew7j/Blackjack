@@ -76,7 +76,8 @@ public class PlayerChipLineGraph extends ApplicationFrame
 
         plot.setRangeGridlinePaint(Color.cyan);
         plot.setDomainGridlinePaint(Color.cyan);
-        plot.setDomainGridlinesVisible(true);
+        plot.setDomainGridlinesVisible(false);
+        plot.setRangeGridlinesVisible(false);
 
         final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
         rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
