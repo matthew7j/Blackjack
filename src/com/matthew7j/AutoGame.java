@@ -10,6 +10,7 @@ public class AutoGame {
     private ArrayList<Person> players = new ArrayList<Person>();
     private PlayerChipLineGraph playerChipsLineGraph;
     private PlayerWinPercentageLineGraph playerWinPercentageLineGraph;
+    private PlayerLostPercentageLineGraph playerLostPercentageLineGraph;
 
     public AutoGame(int numDecks, int numPlayers, double amount, double handAmount, double tableMinimum, double tableMaximum) {
         this.numDecks = numDecks;
@@ -25,13 +26,26 @@ public class AutoGame {
             dealShoe(initGame());
             playerChipsLineGraph.addData(players, totalHands);
             playerWinPercentageLineGraph.addData(players, totalHands);
+            playerLostPercentageLineGraph.addData(players, totalHands);
             playerChipsLineGraph.composeGraph();
             playerWinPercentageLineGraph.composeGraph();
+            playerLostPercentageLineGraph.composeGraph();
             System.out.println("\n\n\n\n\n\nNEW SHOE number " + i + "\n\n\n\n\n\n");
         }
         long endTime = System.nanoTime();
         long duration = (endTime - startTime);
         System.out.println("TOTAL TIME: " + duration/1000000000 + "s");
+
+        for (Person p : players){
+            if (p instanceof Player){
+                System.out.println(p.name + ": number of double down wins: " + ((Player) p).getHandsDoubledWon());
+                double playerAmount;
+                playerAmount = (((Player) p).getNumberHandsWon() + ((Player) p).getHandsDoubledWon() - ((Player) p).getNumberHandsLost()) * 20;
+                System.out.println(p.name + " SHOULD HAVE " + playerAmount + " chips\nThey have: " + ((Player) p).getChips());
+            }
+
+
+        }
     }
 
     private Shoe initGame() {
@@ -64,6 +78,7 @@ public class AutoGame {
                 }
                 checkResults();
             }
+            checkResults();
             clearTable();
         }
     }
@@ -98,7 +113,7 @@ public class AutoGame {
                         String money = JOptionPane.showInputDialog("How much do you want to buy in for? ");
                         double amount = Double.parseDouble(money);
 
-                        ((Player) p).addChips(amount);
+                        ((Player) p).addChips(amount, false);
                     }
                     else{
                         playersToRemove.add((Player)p);
@@ -118,11 +133,13 @@ public class AutoGame {
         if (totalHands != 0){
             playerChipsLineGraph.addData(players, totalHands);
             playerWinPercentageLineGraph.addData(players, totalHands);
+            playerLostPercentageLineGraph.addData(players, totalHands);
         }
         else
         {
             playerChipsLineGraph = new PlayerChipLineGraph("BlackJack Player Chips Line Graph" , players, totalHands);
             playerWinPercentageLineGraph = new PlayerWinPercentageLineGraph("BlackJack Player Win Percentage Line Graph" , players, totalHands);
+            playerLostPercentageLineGraph = new PlayerLostPercentageLineGraph("BlackJack Player Lost Percentage Line Graph" , players, totalHands);
         }
         totalHands++;
 
@@ -159,7 +176,7 @@ public class AutoGame {
             if (p.checkForBlackJack(p.hands.get(0))){
                 if (p instanceof Player){
                     Hand h =  p.hands.get(0);
-                    ((Player) p).addChips(h.bet * 1.5);
+                    ((Player) p).addChips(h.bet * 1.5, true);
                     System.out.println(p.name + " won " + h.bet * 1.5 + " with hand: \n" + h.cards.toString());
                     p.hands.clear();
 

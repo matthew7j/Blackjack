@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Player extends Person {
     private double money;
     private int totalHands;
-    private int handsWon, handsPushed, handsLost;
+    private int handsWon, handsPushed, handsLost, handsDoubledWon;
 
     public Player(double money, String name) {
         this.money = money;
@@ -29,7 +29,9 @@ public class Player extends Person {
     {
         return money;
     }
-    public void addChips(double amount) {
+    public void addChips(double amount, boolean doubled) {
+        if (doubled)
+            handsDoubledWon++;
         money += amount;
         addHand(1);
     }
@@ -39,7 +41,6 @@ public class Player extends Person {
     }
     public void addHand(int val)
     {
-
         if (val == 1)
             handsWon++;
         else if (val == 2)
@@ -57,11 +58,27 @@ public class Player extends Person {
     public double getPercentageHandsLost(){
         if (totalHands == 0)
             return 0;
-        return (handsLost / totalHands) * 100;
+        return ((double)handsLost / (double)totalHands) * 100;
     }
     public double getPercentageHandsPushed(){
         if (totalHands == 0)
             return 0;
         return (handsPushed / (double)totalHands) * 100;
     }
+    public int getHandsDoubledWon()
+    {
+        return handsDoubledWon;
+    }
+    public int getNumberHandsWon()
+    {
+        return handsWon;
+    }public int getNumberHandsLost()
+    {
+        return handsLost;
+    }public int getNumberHandsPushed()
+    {
+        return handsPushed;
+    }
+
+
 }
