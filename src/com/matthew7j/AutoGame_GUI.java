@@ -18,11 +18,11 @@ public class AutoGame_GUI extends JFrame {
     private JLabel handLabel;
 
     public AutoGame_GUI() {
-        add(mainPanel);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        pack();
-        setVisible(true);
-
+        //add(mainPanel);
+        //setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //pack();
+        //setVisible(true);
+/*
         simulateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 numDecks = Integer.parseInt(decksTextField.getText());
@@ -35,6 +35,9 @@ public class AutoGame_GUI extends JFrame {
                 new AutoGame(numDecks, numPlayers, amount, handAmount, tableMin, tableMax);
             }
         });
+        */
+
+        new AutoGame(7, 6, 1000, 20, 1, 100);
 
     }
 }

@@ -26,7 +26,7 @@ public class PlayerTurnEngine {
     }
 
     private void turnEngine(){
-        //System.out.println("Dealer card: " + dealer.hands.get(0).cards.get(0).value);
+        System.out.println("Dealer card: " + dealer.hands.get(0).cards.get(0).value);
         int added ;
         for (Person p : players){
             if (p instanceof Player) {
@@ -44,13 +44,13 @@ public class PlayerTurnEngine {
     }
 
     private int handleHand(Hand h, Person p){
-        //System.out.println("\n" + p.name + " current hand: \n" + h.toString());
+        System.out.println("\n" + p.name + " current hand: \n" + h.toString());
         boolean isPair = false;
         boolean isSoft = false;
         int softTest = 0;
         int playerTotal = h.getTotal();
         int added = 0;
-        //System.out.println(p.name + " current total: " + playerTotal);
+        System.out.println(p.name + " current total: " + playerTotal);
 
         for (Card c : h.cards){
             if (c.getWeight() == 11)
@@ -90,7 +90,7 @@ public class PlayerTurnEngine {
         else
         {
             if (h.getTotal() > 21){
-                //System.out.println("Player busted with " + playerTotal);
+                System.out.println("Player busted with " + playerTotal);
                 h.busted = true;
             }
             else {
@@ -114,7 +114,7 @@ public class PlayerTurnEngine {
         if (c.suit == null) {
             c = shoe.cards.remove(0);
             shoe.yellow = true;
-            //System.out.println("Last hand of the shoe!");
+            System.out.println("Last hand of the shoe!");
         }
 
         return c;
@@ -162,24 +162,24 @@ public class PlayerTurnEngine {
 
         if (!isPair) {
             if (playerTotal >= 17 && !isSoft) {
-                //System.out.println("1");
+                System.out.println("1");
                 return true;
             }
             if (playerTotal >= 12 && playerTotal <= 16 && dealerCard >= 2 && dealerCard <= 6) {
-                //System.out.println("2");
+                System.out.println("2");
                 return true;
             }
             if (isSoft && playerTotal >= 19) {
-                //System.out.println("3");
+                System.out.println("3");
                 return true;
             }
             if ((isSoft && playerTotal == 18) && (dealerCard == 2 || dealerCard == 7 || dealerCard == 8)) {
-                //System.out.println("4");
+                System.out.println("4");
                 return true;
             }
         }
         if (isPair && playerTotal == 20) {
-            //System.out.println("5");
+            System.out.println("5");
             return true;
         }
         return false;
@@ -217,11 +217,11 @@ public class PlayerTurnEngine {
     }
 
     private void hit(Hand h){
-        //System.out.println("Player is hitting with " + h.getTotal());
+        System.out.println("Player is hitting with " + h.getTotal());
         h.addCard(addCard());
     }
     private void stand(Hand h){
-        //System.out.println("Player is staying with " + h.getTotal());
+        System.out.println("Player is staying with " + h.getTotal());
     }
     private boolean split(Card card1, Card card2, Hand h, Person p){
 
@@ -229,14 +229,14 @@ public class PlayerTurnEngine {
 
         if (player.getChips() < h.bet)
         {
-            //System.out.println(p.name + " cannot split this hand because they do not have sufficient chips");
+            System.out.println(p.name + " cannot split this hand because they do not have sufficient chips");
             hit(h);
             handleHand(h, p);
             return false;
         }
         else
         {
-            //System.out.println(p.name + " is splitting with Cards:  " + card1 + " and " + card2);
+            System.out.println(p.name + " is splitting with Cards:  " + card1 + " and " + card2);
             if (card1.getWeight() != 11) {
                 Hand hand = new Hand();
                 hand.bet = h.bet;
@@ -263,10 +263,10 @@ public class PlayerTurnEngine {
         }
     }
     private void doubleDown(Hand h){
-        //System.out.println("Player is doubling down with " + h.getTotal());
+        System.out.println("Player is doubling down with " + h.getTotal());
 
         h.addCard(addCard());
-        //System.out.println("Player has " + h.getTotal() + " after double down");
+        System.out.println("Player has " + h.getTotal() + " after double down");
         h.bet *= 2;
     }
 }
