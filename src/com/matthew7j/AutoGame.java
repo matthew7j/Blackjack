@@ -30,22 +30,23 @@ public class AutoGame {
             playerChipsLineGraph.composeGraph();
             playerWinPercentageLineGraph.composeGraph();
             playerLostPercentageLineGraph.composeGraph();
+
+            for (Person p : players){
+                if (p instanceof Player){
+                    System.out.println(p.name + ": number of double down wins: " + ((Player) p).getHandsDoubledWon());
+                    double playerAmount;
+                    playerAmount = ((Player) p).getNumberHandsWon() * 20 + ((Player) p).getHandsDoubledWon() * 20 - ((Player) p).getNumberHandsLost() * 20 - ((Player) p).getHandsDoubledLost() * 20 + ((Player) p).getNumBlackJacks() * 10;
+                    System.out.println(p.name + " SHOULD HAVE " + playerAmount + " chips\nThey have: " + ((Player) p).getChips());
+                }
+            }
+
+
             System.out.println("\n\n\n\n\n\nNEW SHOE number " + i + "\n\n\n\n\n\n");
         }
         long endTime = System.nanoTime();
         long duration = (endTime - startTime);
         System.out.println("TOTAL TIME: " + duration/1000000000 + "s");
 
-        for (Person p : players){
-            if (p instanceof Player){
-                System.out.println(p.name + ": number of double down wins: " + ((Player) p).getHandsDoubledWon());
-                double playerAmount;
-                playerAmount = (((Player) p).getNumberHandsWon() + ((Player) p).getHandsDoubledWon() - ((Player) p).getNumberHandsLost()) * 20;
-                System.out.println(p.name + " SHOULD HAVE " + playerAmount + " chips\nThey have: " + ((Player) p).getChips());
-            }
-
-
-        }
     }
 
     private Shoe initGame() {
@@ -78,7 +79,9 @@ public class AutoGame {
                 }
                 checkResults();
             }
-            checkResults();
+            else {
+                checkResults();
+            }
             clearTable();
         }
     }
@@ -176,7 +179,7 @@ public class AutoGame {
             if (p.checkForBlackJack(p.hands.get(0))){
                 if (p instanceof Player){
                     Hand h =  p.hands.get(0);
-                    ((Player) p).addChips(h.bet * 1.5, true);
+                    ((Player) p).addChips(h.bet * 1.5, false);
                     System.out.println(p.name + " won " + h.bet * 1.5 + " with hand: \n" + h.cards.toString());
                     p.hands.clear();
 

@@ -27,7 +27,7 @@ public class Results {
         for (Hand h : p.hands){
             if ((h.getTotal() > dealerHand.getTotal() && !h.busted) || (dealerHand.getTotal() > 21 && !h.busted)){
                 System.out.println(p.name + " won " + h.bet + " with hand: \n" + h.cards.toString());
-                player.addChips(h.bet, false);
+                player.addChips(h.bet, h.doubled);
             }
             else if (h.getTotal() == dealerHand.getTotal() && !h.busted)
             {
@@ -37,7 +37,7 @@ public class Results {
             else
             {
                 System.out.println(p.name + " lost " + h.bet + " with hand: \n" + h.cards.toString());
-                player.removeChips(h.bet);
+                player.removeChips(h.bet, h.doubled);
             }
         }
     }

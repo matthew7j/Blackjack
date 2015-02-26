@@ -7,6 +7,7 @@ public class Hand {
     boolean splitAces = false;
     double bet;
     boolean busted = false;
+    boolean doubled = false;
 
     public Hand()
     {

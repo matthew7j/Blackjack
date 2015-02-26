@@ -101,12 +101,11 @@ public class PlayerWinPercentageLineGraph extends ApplicationFrame
         final JFreeChart chart = createChart();
         final ChartPanel chartPanel = new ChartPanel(chart);
 
-        final CategoryPlot  plot = (CategoryPlot) chart.getPlot();
+        final CategoryPlot plot = (CategoryPlot) chart.getPlot();
         plot.setBackgroundPaint(Color.BLACK);
 
         final LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
-        renderer.setSeriesLinesVisible(0, false);
-        renderer.setSeriesShapesVisible(1, false);
+        renderer.setSeriesLinesVisible(0, true);
         plot.setRenderer(renderer);
 
         chartPanel.setPreferredSize(new java.awt.Dimension(500,500));
@@ -115,5 +114,4 @@ public class PlayerWinPercentageLineGraph extends ApplicationFrame
         RefineryUtilities.centerFrameOnScreen(this);
         this.setVisible(true);
     }
-
 }

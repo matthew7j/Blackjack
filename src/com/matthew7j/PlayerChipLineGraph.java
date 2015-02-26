@@ -104,8 +104,7 @@ public class PlayerChipLineGraph extends ApplicationFrame
         plot.setBackgroundPaint(Color.BLACK);
 
         final LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
-        renderer.setSeriesLinesVisible(0, false);
-        renderer.setSeriesShapesVisible(1, false);
+        renderer.setSeriesLinesVisible(0, true);
         plot.setRenderer(renderer);
 
         chartPanel.setPreferredSize(new java.awt.Dimension(500,500));

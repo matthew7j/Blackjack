@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Player extends Person {
     private double money;
     private int totalHands;
-    private int handsWon, handsPushed, handsLost, handsDoubledWon;
+    private int handsWon, handsPushed, handsLost, handsDoubledWon, handDoubledLost, numBlackJacks;
 
     public Player(double money, String name) {
         this.money = money;
@@ -20,6 +20,7 @@ public class Player extends Person {
 
         if ((v1.compareTo(Value.Ace) == 0 || v2.compareTo(Value.Ace) == 0) && (v1.compareTo(Value.Ten) == 0 || v1.compareTo(Value.Jack) == 0 || v1.compareTo(Value.Queen) == 0 || v1.compareTo(Value.King) == 0 || v2.compareTo(Value.Ten) == 0 || v2.compareTo(Value.Jack) == 0 || v2.compareTo(Value.Queen) == 0 || v2.compareTo(Value.King) == 0)) {
             System.out.println("\nPlayer got BlackJack with cards: " + h.cards.get(0).value.toString() + " and " + h.cards.get(1).value.toString() + "!");
+            numBlackJacks++;
             return true;
         }
         return false;
@@ -35,7 +36,9 @@ public class Player extends Person {
         money += amount;
         addHand(1);
     }
-    public void removeChips(double amount){
+    public void removeChips(double amount, boolean doubled){
+        if (doubled)
+            handDoubledLost++;
         money -= amount;
         addHand(2);
     }
@@ -79,6 +82,13 @@ public class Player extends Person {
     {
         return handsPushed;
     }
-
+    public int getHandsDoubledLost()
+    {
+        return handDoubledLost;
+    }
+    public int getNumBlackJacks()
+    {
+        return numBlackJacks;
+    }
 
 }

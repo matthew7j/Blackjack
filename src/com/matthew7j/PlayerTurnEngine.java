@@ -268,5 +268,6 @@ public class PlayerTurnEngine {
         h.addCard(addCard());
         System.out.println("Player has " + h.getTotal() + " after double down");
         h.bet *= 2;
+        h.doubled = true;
     }
 }
