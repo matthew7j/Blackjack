@@ -21,13 +21,13 @@ import org.jfree.ui.RefineryUtilities;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Statistics extends ApplicationFrame
+public class PlayerChipLineGraph extends ApplicationFrame
 {
     private ArrayList<Person> players = new ArrayList<Person>();
     private int handNum;
     private CategoryDataset dataset;
 
-    public Statistics(final String title, ArrayList<Person> players, int handNum){
+    public PlayerChipLineGraph(final String title, ArrayList<Person> players, int handNum){
         super(title);
 
         this.players = players;
@@ -49,7 +49,7 @@ public class Statistics extends ApplicationFrame
 
     private JFreeChart createChart(){
         final JFreeChart chart = ChartFactory.createLineChart(
-                "BlackJack Statistics",
+                "BlackJack PlayerChipLineGraph",
                 "Hand Number",
                 "Chips",
                 this.dataset,

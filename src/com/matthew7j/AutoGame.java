@@ -8,7 +8,7 @@ public class AutoGame {
     private double amount, handAmount, tableMinimum, tableMaximum;
 
     private ArrayList<Person> players = new ArrayList<Person>();
-    private Statistics stats;
+    private PlayerChipLineGraph playerChipsLineGraph;
 
     public AutoGame(int numDecks, int numPlayers, double amount, double handAmount, double tableMinimum, double tableMaximum) {
         this.numDecks = numDecks;
@@ -22,8 +22,8 @@ public class AutoGame {
         long startTime = System.nanoTime();
         for (int i = 0; i < 50; i++) {
             dealShoe(initGame());
-            stats.addData(players, totalHands);
-            stats.composeGraph();
+            playerChipsLineGraph.addData(players, totalHands);
+            playerChipsLineGraph.composeGraph();
             System.out.println("\n\n\n\n\n\nNEW SHOE number " + i + "\n\n\n\n\n\n");
         }
         long endTime = System.nanoTime();
@@ -113,11 +113,11 @@ public class AutoGame {
     private void dealHand(Shoe shoe) {
         checkTableChips();
         if (totalHands != 0){
-            stats.addData(players, totalHands);
+            playerChipsLineGraph.addData(players, totalHands);
         }
         else
         {
-            stats = new Statistics("BlackJack Statistics" , players, totalHands);
+            playerChipsLineGraph = new PlayerChipLineGraph("BlackJack PlayerChipLineGraph" , players, totalHands);
         }
         totalHands++;
 
@@ -174,10 +174,5 @@ public class AutoGame {
             Hand hand = new Hand();
             p.hands.add(hand);
         }
-    }
-
-    private void getCurrentHand() {
-       // for (int i = 0; i < players.size(); i++)
-           // System.out.println("Player " + players.get(i) + " cards:\n" +  players.get(i).hands.toString());
     }
 }
